@@ -1,0 +1,196 @@
+import os
+import time
+import sys
+
+# Initialize the availability of the artifacts using a list
+artifacts = [
+    "Cyrus cylinder", "Tutankhamun's gold mask", "Venus of Willendorf", "Bust of Nefertiti", "Phaistos disc", "Rosetta stone","Dead sea scrolls","Bone flutes","Lycurgus cup","Sutton Hoo helmet"
+]
+rented_status = [False] * len(artifacts)  # Corresponding status for each movie
+
+def clear_screen():
+    """Clears the console screen."""
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
+def display_menu():
+    """Displays the main menu options."""
+    print("\n--- Simple Artifact Management System ---")
+    print("1. View Available Artifacts")
+    print("2. Add an Artifact")
+    print("3. Update an Artifact")
+    print("4. Delete an Artifact")
+    print("5. Category of Artifact")
+    print("6. Condition of artifact")
+    print("7. Location of artifact")
+    print("8. Search an Artifact")
+    print("9.Exit")
+    print("----------------------------------")
+
+
+def view_available_artifacts():
+    """Displays the available artifacts to view."""
+    clear_screen()
+    print("\nAvailable Artifacts:")
+    available = False
+    for i in range(len(artifacts)):
+        if not rented_status[i]:
+            print(f"- {artifacts[i]}")
+            available = True
+
+    if not available:
+        print("No artifacts available.")
+
+    time.sleep(2)  # Pause for readability
+
+
+def add_artifact():
+    """Allows the user to add an artifact."""
+    clear_screen()
+    artifact_name = input("Enter the name of the artifact you want to add: ").strip ()
+
+    if artifact_name in artifacts:
+        index = artifacts.index(artifact_name)
+        if not rented_status[index]:
+            rented_status[index] = True
+            print(f"You have added '{artifact_name}'.")
+        else:
+            print(f"'{artifact_name}' is already added.")
+    else:
+        print("Artifact not found.")
+
+    time.sleep(2)
+
+
+def update_artifact():
+    """Allows the user to update an artifact."""
+    clear_screen()
+    artifact_name = input("Enter the name of the artifact you want to update: ").strip()
+
+    if artifact_name in artifacts:
+        index = artifacts.index(artifact_name)
+        if rented_status[index]:
+            rented_status[index] = False
+            print(f"You have updated '{artifact_name}'.")
+        else:
+            print(f"'{artifact_name}' was not updated.")
+    else:
+        print("Artifact not found.")
+
+    time.sleep(2)
+
+def delete_artifact():
+    """Allows the user to delete an artifact."""
+    clear_screen()
+    artifact_name = input("Enter the name of the artifact you want to delete: ").strip()
+
+    if artifact_name in artifacts:
+        index = artifacts.index(artifact_name)
+        if rented_status[index]:
+            rented_status[index] = False
+            print(f"You have deleted '{artifact_name}'.")
+        else:
+            print(f"'{artifact_name}' was not deleted.")
+    else:
+        print("Artifact not found.")
+
+    time.sleep(2)
+
+def category_of_artifact():
+    """Displays the category of an artifact."""
+    clear_screen()
+    category_name = input("Enter the name of the category of artifact: ").strip()
+
+    if category_name in artifacts:
+        index = artifacts.index(category_name)
+        if rented_status[index]:
+            rented_status[index] = False
+            print(f"You have added '{category_name}'.")
+    else:
+        print("Artifact not found.")
+
+        time.sleep(2)
+
+def condition_of_artifact():
+    """Displays the condition of an artifact."""
+    clear_screen()
+    condition_name = input("Enter the name of the condition of artifact: ").strip()
+
+    if condition_name in artifacts:
+        index = artifacts.index(condition_name)
+        if rented_status[index]:
+            rented_status[index] = False
+            print(f"You have updated '{condition_name}'.")
+    else:
+        print("Artifact not found.")
+
+        time.sleep(2)
+
+def location_of_artifact():
+    """Displays the location of an artifact."""
+    clear_screen()
+    location_name = input("Enter the name of the location of artifact: ").strip()
+
+    if location_name in artifacts:
+        index = artifacts.index(location_name)
+        if rented_status[index]:
+            rented_status[index] = False
+            print(f"You have updated '{location_name}'.")
+    else:
+        print("Artifact not found.")
+
+def search_artifact():
+    """Displays the search artifact."""
+    clear_screen()
+    search_name = input("Enter the name of the search: ").strip()
+    if search_name in artifacts:
+        index = artifacts.index(search_name)
+        if rented_status[index]:
+            rented_status[index] = False
+            print(f"You have updated '{search_name}'.")
+    else:
+        print("Artifact not found.")
+
+
+def exit_program():
+    """Exits the program gracefully."""
+    print("Exiting the system. Have a great day!")
+    time.sleep(2)
+    sys.exit()
+
+
+def main():
+    """Main function to run the Artifact Management system."""
+    while True:
+        clear_screen()
+        display_menu()
+        choice = input("Enter your choice (1-9): ")
+
+        if choice == '1':
+            view_available_artifacts()
+        elif choice == '2':
+            add_artifact()
+        elif choice == '3':
+            update_artifact()
+        elif choice == '4':
+            delete_artifact()
+        elif choice == '5':
+            category_of_artifact()
+        elif choice == '6':
+            condition_of_artifact()
+        elif choice == '7':
+            location_of_artifact()
+        elif choice == '8':
+            search_artifact()
+
+
+        elif choice == '9':
+            exit()
+        else:
+            print("Invalid choice. Please select a valid option.")
+            time.sleep(2)
+
+
+# Run the artifact management system
+if __name__ == "__main__":
+       main()
